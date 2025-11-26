@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓에듀 - 온라인 교육 플랫폼</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 헤더 섹션 - 큰 P자와 포켓에듀 */
+        .header {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container {
+            text-align: center;
+            color: white;
+        }
+
+        .big-p {
+            font-size: 15rem;
+            font-weight: bold;
+            margin-bottom: -50px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .company-name {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 10px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 수료증 섹션 */
+        .certificate-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .certificate-placeholder {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            border: 3px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #666;
+            border-radius: 10px;
+        }
+
+        /* 콘텐츠 슬라이더 섹션 */
+        .content-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .slider-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .content-slider {
+            position: relative;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 300px;
+            margin: 0 15px;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .slide h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .slide p {
+            color: #666;
+        }
+
+        .slider-nav {
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .nav-btn:hover {
+            background: #5a6fd8;
+        }
+
+        /* 맞춤 서비스 섹션 */
+        .custom-service-section {
+            padding: 100px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .service-placeholder {
+            max-width: 1000px;
+            margin: 50px auto 0;
+            height: 400px;
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            border: 3px dashed #2196f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1976d2;
+            border-radius: 10px;
+        }
+
+        /* 협력 기업 섹션 */
+        .partners-section {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .partners-grid {
+            max-width: 1000px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .partner-placeholder {
+            height: 120px;
+            background: linear-gradient(45deg, #fff3e0, #ffe0b2);
+            border: 2px dashed #ff9800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #f57c00;
+            border-radius: 10px;
+        }
+
+        /* 문의 폼 섹션 */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #ff5252;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .big-p {
+                font-size: 8rem;
+            }
+            
+            .company-name {
+                font-size: 2.5rem;
+                letter-spacing: 5px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .slide {
+                min-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <section class="header">
+        <div class="logo-container">
+            <div class="big-p">P</div>
+            <div class="company-name">포켓에듀</div>
+        </div>
+    </section>
+
+    <!-- 수료증 섹션 -->
+    <section class="certificate-section">
+        <h2 class="section-title">공인된 수료증 발급</h2>
+        <div class="certificate-container">
+            <div class="certificate-placeholder">
+                수료증 이미지가 여기에 들어갑니다
+            </div>
+        </div>
+    </section>
+
+    <!-- 콘텐츠 슬라이더 섹션 -->
+    <section class="content-section">
+        <div class="slider-container">
+            <h2 class="section-title">10,000개 이상의 다양한 콘텐츠</h2>
+            <div class="content-slider">
+                <div class="slides" id="slides">
+                    <div class="slide">
+                        <h3>프로그래밍</h3>
+                        <p>Python, JavaScript, Java 등 다양한 프로그래밍 언어를 배워보세요</p>
+                    </div>
+                    <div class="slide">
+                        <h3>데이터 사이언스</h3>
+                        <p>머신러닝, 딥러닝, 데이터 분석 전문가가 되어보세요</p>
+                    </div>
+                    <div class="slide">
+                        <h3>웹 개발</h3>
+                        <p>React, Vue, Angular로 현대적인 웹 애플리케이션을 만들어보세요</p>
+                    </div>
+                    <div class="slide">
+                        <h3>모바일 개발</h3>
+                        <p>iOS, Android 네이티브 및 크로스플랫폼 앱 개발을 학습하세요</p>
+                    </div>
+                    <div class="slide">
+                        <h3>클라우드</h3>
+                        <p>AWS, Azure, GCP 클라우드 서비스 전문가가 되어보세요</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="nav-btn" onclick="previousSlide()">이전</button>
+                <button class="nav-btn" onclick="nextSlide()">다음</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 맞춤 서비스 섹션 -->
+    <section class="custom-service-section">
+        <h2 class="section-title">담당자 맞춤 서비스</h2>
+        <div class="service-placeholder">
+            담당자 맞춤 서비스 페이지 이미지가 여기에 들어갑니다
+        </div>
+    </section>
+
+    <!-- 협력 기업 섹션 -->
+    <section class="partners-section">
+        <h2 class="section-title">협력 기업</h2>
+        <div class="partners-grid">
+            <div class="partner-placeholder">기업 로고 1</div>
+            <div class="partner-placeholder">기업 로고 2</div>
+            <div class="partner-placeholder">기업 로고 3</div>
+            <div class="partner-placeholder">기업 로고 4</div>
+            <div class="partner-placeholder">기업 로고 5</div>
+            <div class="partner-placeholder">기업 로고 6</div>
+        </div>
+    </section>
+
+    <!-- 문의 폼 섹션 -->
+    <section class="contact-section">
+        <div class="form-container">
+            <h2 class="section-title">문의하기</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">회사명</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="message">문의내용</label>
+                    <textarea id="message" name="message" placeholder="궁금한 점을 자세히 적어주세요" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">문의 보내기</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const slideWidth = 330; // slide width + margin
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const translateX = -currentSlide * slideWidth;
+            slides.style.transform = `translateX(${translateX}px)`;
+        }
+
+        // 자동 슬라이드
+        setInterval(nextSlide, 4000);
+
+        // 폼 제출 처리
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.');
+        });
+    </script>
+</body>
+</html>

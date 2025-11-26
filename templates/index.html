@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포켓에듀 - 온라인 교육 플랫폼</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <section class="header">
+        <div class="header-top">
+            <img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo">
+        </div>
+        <div class="logo-container">
+            <div class="big-p">Safety Comes First</div>
+            <div class="company-name-spacer"></div>
+            <div class="company-name">안전보건교육 가장 합리적인 가격으로 진행하기</div>
+        </div>
+    </section>
+
+    <!-- 수료증 섹션 -->
+    <section class="certificate-section">
+        <h2 class="section-title">교육기관인증</h2>
+         <div class="certificate-container">
+             <div class="certificate-slider">
+                 <div class="certificate-slides" id="certificateSlides">
+                         <img src="{{ url_for('static', filename='images/교육기관 수료증.png') }}" alt="원격평생교육시설 신고증" class="certificate-image">
+                 </div>
+         </div>
+    </section>
+
+    <!-- 콘텐츠 섹션 -->
+    <section class="content-section">
+        <div class="content-container">
+            <h2 class="section-title">10,000개 이상의 다양한 콘텐츠</h2>
+            <div class="content-image-container">
+                <img src="{{ url_for('static', filename='images/콘텐츠.png') }}" alt="10,000개 이상의 다양한 콘텐츠" class="content-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- 맞춤 서비스 섹션 -->
+    <section class="custom-service-section">
+        <h2 class="section-title">담당자 맞춤 서비스</h2>
+        <div class="service-container">
+            <img src="{{ url_for('static', filename='images/전용 사이트.png') }}" alt="담당자 맞춤 서비스" class="service-image">
+        </div>
+        <div class="service-container">
+            <img src="{{ url_for('static', filename='images/문자.png') }}" alt="담당자 맞춤 서비스" class="service-image">
+        </div>
+        <div class="service-container">
+            <img src="{{ url_for('static', filename='images/담당자관리.png') }}" alt="담당자 맞춤 서비스" class="service-image">
+        </div>
+        <div class="service-container">
+            <img src="{{ url_for('static', filename='images/수료증.png') }}" alt="담당자 맞춤 서비스" class="service-image">
+        </div>
+    </section>
+
+    <!-- Q&A 섹션 -->
+    <section class="qa-section">
+        <div class="qa-container">
+            <h2 class="section-title">교육 담당자님들의 질문 리스트</h2>
+            
+            <div class="qa-list">
+                <div class="qa-item">
+                    <div class="qa-question" onclick="toggleAnswer(0)">
+                        <span class="qa-number">Q1</span>
+                        <span class="qa-text">연간 교육을 설계할 수 있는 플랫폼인가요?</span>
+                        <span class="qa-icon">+</span>
+                    </div>
+                    <div class="qa-answer">
+                        <p>네, 산업안전보건교육에서 법정, 직무교육까지 한 번에 해결하실 수 있습니다. 포켓에듀는 연간 교육 계획 수립부터 실행까지 체계적으로 지원합니다.</p>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question" onclick="toggleAnswer(1)">
+                        <span class="qa-number">Q2</span>
+                        <span class="qa-text">콘텐츠는 다양한가요?</span>
+                        <span class="qa-icon">+</span>
+                    </div>
+                    <div class="qa-answer">
+                        <p>매월 200여 개의 콘텐츠를 업데이트하고 있으며, 현재 10,000개 이상의 다양한 교육 콘텐츠를 보유하고 있습니다.</p>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question" onclick="toggleAnswer(2)">
+                        <span class="qa-number">Q3</span>
+                        <span class="qa-text">우리 직원들이 들었으면 하는 강의가 있는데...</span>
+                        <span class="qa-icon">+</span>
+                    </div>
+                    <div class="qa-answer">
+                        <p>교육담당자님이 선택한 콘텐츠를 메인화면 전면에 보여드립니다. 맞춤형 교육 과정 설계가 가능합니다.</p>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question" onclick="toggleAnswer(3)">
+                        <span class="qa-number">Q4</span>
+                        <span class="qa-text">업데이트 주기는 어떻게 되나요?</span>
+                        <span class="qa-icon">+</span>
+                    </div>
+                    <div class="qa-answer">
+                        <p>한 달에 2번 인기 있는 테마를 선정하여 콘텐츠를 제작/업데이트합니다. 최신 트렌드를 반영한 교육을 제공합니다.</p>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question" onclick="toggleAnswer(4)">
+                        <span class="qa-number">Q5</span>
+                        <span class="qa-text">학습자에게 맞는 콘텐츠를 추천해 주나요?</span>
+                        <span class="qa-icon">+</span>
+                    </div>
+                    <div class="qa-answer">
+                        <p>동영상 검색을 통해 학습자가 찾는 콘텐츠를 정확하게 검색할 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <div class="qa-question" onclick="toggleAnswer(5)">
+                        <span class="qa-number">Q6</span>
+                        <span class="qa-text">이 정도 지원되면 비싸겠죠?</span>
+                        <span class="qa-icon">+</span>
+                    </div>
+                    <div class="qa-answer">
+                        <p>다른 교육원과 달리 합리적인 가격에 이용하실 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 협력 기업 섹션 -->
+    <section class="partners-section">
+        <h2 class="section-title">주요 고객사</h2>
+        <div class="partners-container">
+            <img src="{{ url_for('static', filename='images/협력사.png') }}" alt="협력 기업 로고" class="partners-image">
+        </div>
+    </section>
+
+    <!-- 문의 폼 섹션 -->
+    <section class="contact-section">
+        <div class="form-container">
+            <h2 class="section-title">근로자 안전보건교육 및 5대 법정의무교육 신청서</h2>
+            <p class="form-subtitle">(※ 설문지를 작성해주시면, 확인 후, 교육컨설턴트가 연락드릴예정입니다.)</p>
+     
+                <!-- 또는 구글폼 새 창으로 열기 -->
+                <button type="button" class="submit-btn" onclick="openGoogleForm()" style="margin-top: 15px; background: #5a6fd8;">
+                    <span class="btn-text">신청서 작성하기</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

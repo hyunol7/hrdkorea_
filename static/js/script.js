@@ -1,0 +1,451 @@
+// 슬라이더 관련 변수
+let currentSlide = 0;
+const slides = document.getElementById('slides');
+let totalSlides = 0;
+const slideWidth = 330; // slide width + margin
+
+// 수료증 슬라이더 변수
+let currentCertificate = 0;
+const certificateSlides = document.getElementById('certificateSlides');
+let totalCertificates = 1; // 실제 슬라이드 개수
+const certificateWidth = 400; // certificate width + gap
+let isTransitioning = false;
+
+// DOM이 로드된 후 실행
+document.addEventListener('DOMContentLoaded', function() {
+    // 슬라이드 초기화
+    initializeSlider();
+    
+    // 수료증 슬라이더 초기화
+    initializeCertificateSlider();
+    
+    // 폼 이벤트 리스너 등록
+    initializeForm();
+    
+    // 스크롤 애니메이션 초기화
+    initializeScrollAnimations();
+    
+    // Q&A 초기화
+    initializeQA();
+});
+
+// 슬라이더 초기화
+function initializeSlider() {
+    if (slides) {
+        totalSlides = document.querySelectorAll('.slide').length;
+        
+        // 자동 슬라이드 시작
+        setInterval(nextSlide, 4000);
+        
+        // 터치 이벤트 추가 (모바일 지원)
+        let startX = 0;
+        let endX = 0;
+        
+        slides.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+        
+        slides.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        }
+    }
+}
+
+// 다음 슬라이드
+function nextSlide() {
+    if (totalSlides > 0) {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }
+}
+
+// 이전 슬라이드
+function previousSlide() {
+    if (totalSlides > 0) {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+}
+
+// 슬라이더 업데이트
+function updateSlider() {
+    if (slides) {
+        const translateX = -currentSlide * slideWidth;
+        slides.style.transform = `translateX(${translateX}px)`;
+    }
+}
+
+// 수료증 슬라이더 초기화
+function initializeCertificateSlider() {
+    if (certificateSlides && totalCertificates > 1) {
+        // 자동 슬라이드 시작 (4초마다) - 슬라이드가 2개 이상일 때만
+        setInterval(nextCertificate, 4000);
+        
+        // 터치 이벤트 추가 (모바일 지원)
+        let startX = 0;
+        let endX = 0;
+        
+        certificateSlides.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+        
+        certificateSlides.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleCertificateSwipe();
+        });
+        
+        function handleCertificateSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextCertificate();
+                } else {
+                    previousCertificate();
+                }
+            }
+        }
+        
+        // 트랜지션 끝날 때 이벤트 리스너
+        certificateSlides.addEventListener('transitionend', handleTransitionEnd);
+    }
+}
+
+// 다음 수료증
+function nextCertificate() {
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    currentCertificate++;
+    updateCertificateSlider();
+}
+
+// 이전 수료증
+function previousCertificate() {
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    currentCertificate--;
+    updateCertificateSlider();
+}
+
+// 수료증 슬라이더 업데이트
+function updateCertificateSlider() {
+    if (certificateSlides) {
+        const translateX = -currentCertificate * certificateWidth;
+        certificateSlides.style.transform = `translateX(${translateX}px)`;
+    }
+}
+
+// 트랜지션 완료 후 처리
+function handleTransitionEnd() {
+    isTransitioning = false;
+    
+    // 마지막 복제 슬라이드에 도달하면 첫 번째로 즉시 이동
+    if (currentCertificate >= totalCertificates) {
+        certificateSlides.style.transition = 'none';
+        currentCertificate = 0;
+        updateCertificateSlider();
+        
+        // 다음 프레임에서 트랜지션 다시 활성화
+        setTimeout(() => {
+            certificateSlides.style.transition = 'transform 0.5s ease';
+        }, 50);
+    }
+    
+    // 첫 번째 이전으로 가면 마지막으로 즉시 이동
+    if (currentCertificate < 0) {
+        certificateSlides.style.transition = 'none';
+        currentCertificate = totalCertificates - 1;
+        updateCertificateSlider();
+        
+        // 다음 프레임에서 트랜지션 다시 활성화
+        setTimeout(() => {
+            certificateSlides.style.transition = 'transform 0.5s ease';
+        }, 50);
+    }
+}
+
+// 폼 초기화
+function initializeForm() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleFormSubmit);
+        
+        // 입력 필드 애니메이션
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+    }
+}
+
+// 폼 제출 처리
+async function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.querySelector('.submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    
+    // 개인정보 동의 확인
+    const privacyCheckbox = document.querySelector('input[name="privacy"]');
+    if (!privacyCheckbox.checked) {
+        showNotification('개인정보 수집 및 이용에 동의해주세요.', 'error');
+        return;
+    }
+    
+    // 로딩 상태 시작
+    setLoadingState(true, submitBtn, btnText, btnLoading);
+    
+    try {
+        const formData = new FormData(e.target);
+        
+        // 체크박스 값들을 배열로 수집
+        const educationCheckboxes = document.querySelectorAll('input[name="education"]:checked');
+        const educationValues = Array.from(educationCheckboxes).map(cb => cb.value).join(', ');
+        
+        // 구글 Apps Script URL (여기에 배포한 웹 앱 URL을 입력하세요)
+        const scriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+        
+        // 폼 데이터 준비
+        const data = new URLSearchParams();
+        data.append('company', formData.get('company'));
+        data.append('name', formData.get('name'));
+        data.append('phone', formData.get('phone'));
+        data.append('email', formData.get('email'));
+        data.append('education', educationValues);
+        data.append('employees', formData.get('employees'));
+        data.append('additional', formData.get('additional') || '');
+        data.append('privacy', privacyCheckbox.checked ? '동의' : '미동의');
+        
+        // 구글 스프레드시트로 전송
+        const response = await fetch(scriptUrl, {
+            method: 'POST',
+            body: data
+        });
+        
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            showNotification('문의가 성공적으로 접수되었습니다! 곧 연락드리겠습니다.', 'success');
+            e.target.reset();
+        } else {
+            showNotification(result.message || '문의 전송 중 오류가 발생했습니다.', 'error');
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('문의 전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+    } finally {
+        // 로딩 상태 종료
+        setLoadingState(false, submitBtn, btnText, btnLoading);
+    }
+}
+
+// 로딩 상태 설정
+function setLoadingState(isLoading, submitBtn, btnText, btnLoading) {
+    if (isLoading) {
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        submitBtn.style.opacity = '0.7';
+    } else {
+        submitBtn.disabled = false;
+        btnText.style.display = 'inline';
+        btnLoading.style.display = 'none';
+        submitBtn.style.opacity = '1';
+    }
+}
+
+// 알림 표시
+function showNotification(message, type = 'info') {
+    // 기존 알림 제거
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // 새 알림 생성
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✅' : '❌'}</span>
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    // 스타일 추가
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        background: ${type === 'success' ? '#4caf50' : '#f44336'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        animation: slideInRight 0.3s ease;
+        max-width: 400px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // 5초 후 자동 제거
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }
+    }, 5000);
+}
+
+// 스크롤 애니메이션 초기화
+function initializeScrollAnimations() {
+    // Intersection Observer를 사용한 스크롤 애니메이션
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // 애니메이션 대상 요소들
+    const animateElements = document.querySelectorAll('.section-title, .slide, .certificate-placeholder, .service-placeholder, .partner-placeholder');
+    
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+}
+
+// 구글폼 열기
+function openGoogleForm() {
+    // 구글폼 URL
+    const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdTWGfm5bKJgVsMXxZcXVlqQoy9htzC6_4qMl3izMyq-YPnvw/viewform';
+    
+    // 새 창에서 구글폼 열기
+    window.open(googleFormUrl, '_blank');
+}
+
+// Q&A 초기화
+function initializeQA() {
+    // 모든 Q&A 아이템에 이벤트 리스너 추가
+    const qaItems = document.querySelectorAll('.qa-item');
+    qaItems.forEach((item, index) => {
+        const question = item.querySelector('.qa-question');
+        if (question) {
+            question.setAttribute('onclick', `toggleAnswer(${index})`);
+        }
+    });
+}
+
+// Q&A 토글 함수
+function toggleAnswer(index) {
+    const qaItems = document.querySelectorAll('.qa-item');
+    const currentItem = qaItems[index];
+    const answer = currentItem.querySelector('.qa-answer');
+    const icon = currentItem.querySelector('.qa-icon');
+    
+    // 현재 아이템이 활성화되어 있는지 확인
+    const isActive = currentItem.classList.contains('active');
+    
+    // 모든 아이템 비활성화
+    qaItems.forEach(item => {
+        item.classList.remove('active');
+        const itemAnswer = item.querySelector('.qa-answer');
+        const itemIcon = item.querySelector('.qa-icon');
+        if (itemAnswer) itemAnswer.classList.remove('active');
+        if (itemIcon) itemIcon.textContent = '+';
+    });
+    
+    // 현재 아이템이 비활성화 상태였다면 활성화
+    if (!isActive) {
+        currentItem.classList.add('active');
+        answer.classList.add('active');
+        icon.textContent = '−';
+    }
+}
+
+// CSS 애니메이션 추가
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+    
+    .notification-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .notification-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: auto;
+    }
+    
+    .form-group.focused label {
+        color: #667eea;
+        transform: translateY(-2px);
+    }
+`;
+document.head.appendChild(style);

@@ -1,0 +1,1097 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* 헤더 섹션 */
+.header {
+    height: 35vh;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-top {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 10;
+}
+
+.hrd-logo {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+    transition: all 0.3s ease;
+}
+
+.hrd-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.logo-container {
+    text-align: center;
+    color: #333;
+    position: relative;
+    z-index: 2;
+}
+
+.big-p {
+    font-size: 8rem;
+    font-weight: bold;
+    margin-bottom: -30px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+    background: linear-gradient(135deg, #ad272e 50%, #0e2a6f 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.company-name {
+    font-size: 1.8rem;
+    font-weight: 500;
+    font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: fadeInUp 1s ease-out 0.5s both;
+    line-height: 1.4;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+}
+
+.company-name-spacer {
+    height: 30px;
+}
+
+.company-name a {
+    color: #667eea !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.company-name a:hover {
+    color: #5a6fd8 !important;
+    transform: translateY(-2px);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 공통 섹션 스타일 */
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: #333;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* 작은 설명 텍스트 스타일 */
+h7.section-title, h5.section-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    padding: 0 20px;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+h7.section-title::after, h5.section-title::after {
+    display: none;
+}
+
+/* 수료증 섹션 */
+.certificate-section {
+    padding: 40px 0;
+    background: #f8f9fa;
+}
+
+.certificate-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 수료증 슬라이더 */
+.certificate-slider {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.certificate-slides {
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s ease;
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.certificate-slide {
+    position: relative;
+    min-width: 95vw;
+    max-width: 95vw;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    background: white;
+    margin: 0 auto;
+}
+
+.certificate-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.certificate-image {
+    width: 100%;
+    height: 45vh;
+    object-fit: contain;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.certificate-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(153, 167, 226, 0.9));
+    color: white;
+    padding: 20px 15px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+
+.certificate-overlay h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.certificate-overlay p {
+    font-size: 0.9rem;
+    opacity: 0.95;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+
+/* 수료증 네비게이션 */
+.certificate-nav {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.cert-nav-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 0 8px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.cert-nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.4);
+}
+
+/* 백업용 플레이스홀더 (이미지가 없을 때) */
+.certificate-placeholder {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border: 3px dashed #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.certificate-placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.placeholder-content {
+    text-align: center;
+}
+
+.placeholder-content h3 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #667eea;
+}
+
+.placeholder-content p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+/* 콘텐츠 섹션 */
+.content-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.content-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.content-image-container {
+    margin-top: 50px;
+}
+
+.content-image {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.content-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+/* 백업용 - 기존 슬라이더 스타일 */
+.slider-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.content-slider {
+    position: relative;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 300px;
+    margin: 0 15px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.slide:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.slide-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.slide h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #667eea;
+}
+
+.slide p {
+    color: #666;
+    line-height: 1.8;
+}
+
+.slider-nav {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 0 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* 맞춤 서비스 섹션 */
+.custom-service-section {
+    padding: 100px 0;
+    background: #f8f9fa;
+}
+
+.service-container {
+    max-width: 1600px;
+    margin: 50px auto 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.service-image {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.service-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+/* Q&A 섹션 */
+.qa-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.qa-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.qa-list {
+    margin-top: 50px;
+}
+
+.qa-item {
+    margin-bottom: 20px;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.qa-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.qa-question {
+    display: flex;
+    align-items: center;
+    padding: 25px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+}
+
+.qa-question:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.qa-number {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.qa-text {
+    flex: 1;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.qa-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    margin-left: 20px;
+}
+
+.qa-item.active .qa-icon {
+    transform: rotate(45deg);
+}
+
+.qa-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #f8f9fa;
+}
+
+.qa-answer.active {
+    max-height: 200px;
+}
+
+.qa-answer p {
+    padding: 25px 30px;
+    margin: 0;
+    color: #666;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.service-placeholder {
+    max-width: 1400px;
+    margin: 50px auto 0;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border: 3px dashed #2196f3;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.service-placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(33, 150, 243, 0.2);
+}
+
+.service-content h3 {
+    font-size: 2.5rem;
+    color: #1976d2;
+    margin-bottom: 20px;
+}
+
+.service-content p {
+    font-size: 1.3rem;
+    color: #1565c0;
+    margin-bottom: 30px;
+}
+
+.service-features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: rgba(255,255,255,0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #1976d2;
+    font-weight: 500;
+}
+
+/* 협력 기업 섹션 */
+.partners-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.partners-container {
+    max-width: 1600px;
+    margin: 50px auto 0;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.partners-image {
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.partners-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* 백업용 - 기존 그리드 스타일 (필요시 사용) */
+.partners-grid {
+    max-width: 1000px;
+    margin: 50px auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.partner-placeholder {
+    height: 150px;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px dashed #ff9800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.partner-placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 152, 0, 0.2);
+}
+
+.partner-logo {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.partner-placeholder span {
+    font-size: 1.1rem;
+    color: #f57c00;
+    font-weight: 600;
+}
+
+/* 문의 폼 섹션 */
+.contact-section {
+    padding: 100px 0;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.contact-section .section-title {
+    color: #333;
+}
+
+/* 폼 추가 스타일 */
+.form-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0 15px 0;
+    font-style: italic;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.05rem;
+    color: #333;
+    padding: 16px 20px;
+    background: white;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.checkbox-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.checkbox-item input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-right: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark {
+    background: #667eea;
+    border-color: #667eea;
+    transform: scale(1.1);
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.checkbox-item:has(input[type="checkbox"]:checked) {
+    background: #f0f4ff;
+    border-color: #667eea;
+    color: #667eea;
+    font-weight: 500;
+}
+
+@keyframes checkboxPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1.1); }
+}
+
+.privacy-group {
+    border-top: 2px solid #e0e0e0;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.privacy-content {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.privacy-section {
+    margin-bottom: 20px;
+}
+
+.privacy-section h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.privacy-section p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.privacy-note {
+    font-size: 0.85rem !important;
+    color: #888 !important;
+    font-style: italic;
+}
+
+.privacy-checkbox {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    font-weight: 500;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.form-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #666;
+}
+
+.contact-form {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+    height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.submit-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #5a6fd8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .header {
+        height: 30vh;
+    }
+    
+    .header-top {
+        top: 12px;
+        left: 15px;
+    }
+    
+    .hrd-logo {
+        height: 45px;
+    }
+    
+    .big-p {
+        font-size: 5rem;
+    }
+    
+    .company-name {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        padding: 0 20px;
+    }
+    
+    .company-name a {
+        font-size: 1rem !important;
+    }
+    
+    .company-name-spacer {
+        height: 20px;
+    }
+    
+    .certificate-slide {
+        min-width: 90vw;
+        max-width: 90vw;
+    }
+    
+    .certificate-image {
+        height: 40vh;
+    }
+    
+    .certificate-overlay {
+        padding: 15px 12px 12px;
+    }
+    
+    .certificate-overlay h4 {
+        font-size: 1.1rem;
+    }
+    
+    .certificate-overlay p {
+        font-size: 0.85rem;
+    }
+    
+    .cert-nav-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    h7.section-title, h5.section-title {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    .slide {
+        min-width: 280px;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .service-container {
+        padding: 0 15px;
+    }
+    
+    .service-image {
+        border-radius: 10px;
+    }
+    
+    .service-features {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .partners-container {
+        padding: 0 15px;
+    }
+    
+    .qa-container {
+        padding: 0 15px;
+    }
+    
+    .qa-question {
+        padding: 20px 20px;
+        flex-wrap: wrap;
+    }
+    
+    .qa-number {
+        margin-right: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .qa-text {
+        font-size: 1.1rem;
+    }
+    
+    .qa-answer p {
+        padding: 20px 20px;
+        font-size: 1rem;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .checkbox-group {
+        gap: 10px;
+    }
+    
+    .checkbox-item {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+    
+    .checkmark {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+    }
+    
+    .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+        font-size: 18px;
+    }
+    
+    .checkbox-group {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .privacy-content {
+        padding: 15px;
+    }
+    
+    .privacy-section h4 {
+        font-size: 1rem;
+    }
+    
+    .privacy-section p {
+        font-size: 0.9rem;
+    }
+    
+    .partners-image {
+        border-radius: 10px;
+    }
+    
+    .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 25vh;
+    }
+    
+    .header-top {
+        top: 8px;
+        left: 12px;
+    }
+    
+    .hrd-logo {
+        height: 38px;
+    }
+    
+    .big-p {
+        font-size: 4rem;
+    }
+    
+    .company-name {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+        padding: 0 15px;
+    }
+    
+    .company-name a {
+        font-size: 0.9rem !important;
+    }
+    
+    .company-name-spacer {
+        height: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    h7.section-title, h5.section-title {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+    
+    .content-container {
+        padding: 0 15px;
+    }
+    
+    .content-image {
+        border-radius: 10px;
+    }
+    
+    .slide {
+        min-width: 250px;
+        padding: 30px 20px;
+    }
+    
+    .certificate-slide {
+        min-width: 85vw;
+        max-width: 85vw;
+    }
+    
+    .certificate-image {
+        height: 40vh;
+    }
+    
+    .certificate-overlay h4 {
+        font-size: 1rem;
+    }
+    
+    .certificate-overlay p {
+        font-size: 0.8rem;
+    }
+}
