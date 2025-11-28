@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify
 import os
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.jinja_env.auto_reload = True
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def index():
@@ -43,4 +46,4 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     print("포켓에듀 랜딩페이지 서버를 시작합니다...")
     print(f"브라우저에서 http://localhost:{port} 으로 접속하세요!")
-    app.run(debug=False, host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=port)

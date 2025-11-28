@@ -606,11 +606,13 @@ h7.section-title::after, h5.section-title::after {
 
 .partners-image {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     height: auto;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    display: block;
+    margin: 0 auto;
 }
 
 .partners-image:hover {
