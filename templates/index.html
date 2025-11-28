@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <!-- 좌측 상단 로고 컨테이너 (독립) -->
+    <div class="top-logo-bar">
+        <img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo">
+    </div>
+
     <!-- 헤더 섹션 -->
     <section class="header">
-        <div class="header-top">
-            <img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo">
-        </div>
         <div class="logo-container">
             <div class="big-p">Safety Comes First</div>
             <div class="company-name-spacer"></div>
