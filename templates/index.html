@@ -150,14 +150,16 @@
         <div class="form-container">
             <h2 class="section-title">근로자 안전보건교육 및 5대 법정의무교육 신청서</h2>
             <p class="form-subtitle">(※ 설문지를 작성해주시면, 확인 후, 교육컨설턴트가 연락드릴예정입니다.)</p>
-     
-                <!-- 또는 구글폼 새 창으로 열기 -->
-                <button type="button" class="submit-btn" onclick="openGoogleForm()" style="margin-top: 15px; background: #5a6fd8;">
-                    <span class="btn-text">신청서 작성하기</span>
-                </button>
             </form>
         </div>
     </section>
+
+    <!-- 하단 고정 신청서 버튼 -->
+    <div class="fixed-apply-bar">
+        <button type="button" class="fixed-apply-btn" onclick="openGoogleForm()">
+            <span class="btn-text">신청서 작성하기</span>
+        </button>
+    </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
