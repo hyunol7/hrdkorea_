@@ -9,6 +9,11 @@ html {
     scroll-padding-top: 80px;
 }
 
+/* 모바일 전용 줄바꿈 */
+.mobile-br {
+    display: none;
+}
+
 
 
 /* 좌측 상단 로고 컨테이너 (독립) */
@@ -998,6 +1003,11 @@ h7.section-title::after, h5.section-title::after {
 }
 
 @media (max-width: 768px) {
+    /* 모바일에서 줄바꿈 활성화 */
+    .mobile-br {
+        display: block;
+    }
+    
     .top-logo-bar {
         padding: 12px 20px;
     }
