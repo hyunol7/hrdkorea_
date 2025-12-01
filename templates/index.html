@@ -12,11 +12,20 @@
 <body>
     <!-- 좌측 상단 로고 컨테이너 (독립) -->
     <div class="top-logo-bar">
-        <img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo">
+        <a href="#home" class="logo-link"><img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo"></a>
+        <nav class="top-nav">
+            <a href="#home" class="nav-link">홈</a>
+            <a href="#certificate" class="nav-link">교육기관인증</a>
+            <a href="#content" class="nav-link">콘텐츠</a>
+            <a href="#service" class="nav-link">맞춤서비스</a>
+            <a href="#qa" class="nav-link">Q&A</a>
+            <a href="#partners" class="nav-link">고객사</a>
+            <a href="#contact-section" class="nav-link">문의하기</a>
+        </nav>
     </div>
 
     <!-- 헤더 섹션 -->
-    <section class="header">
+    <section id="home" class="header">
         <div class="logo-container">
             <div class="big-p">Safety Comes First</div>
             <div class="company-name-spacer"></div>
@@ -25,7 +34,7 @@
     </section>
 
     <!-- 수료증 섹션 -->
-    <section class="certificate-section">
+    <section id="certificate" class="certificate-section">
         <h2 class="section-title">교육기관인증</h2>
          <div class="certificate-container">
              <div class="certificate-slider">
@@ -36,7 +45,7 @@
     </section>
 
     <!-- 콘텐츠 섹션 -->
-    <section class="content-section">
+    <section id="content" class="content-section">
         <div class="content-container">
             <h2 class="section-title">10,000개 이상의 다양한 콘텐츠</h2>
             <div class="content-image-container">
@@ -46,7 +55,7 @@
     </section>
 
     <!-- 맞춤 서비스 섹션 -->
-    <section class="custom-service-section">
+    <section id="service" class="custom-service-section">
         <h2 class="section-title">담당자 맞춤 서비스</h2>
         <div class="service-container">
             <img src="{{ url_for('static', filename='images/전용 사이트.png') }}" alt="담당자 맞춤 서비스" class="service-image">
@@ -63,7 +72,7 @@
     </section>
 
     <!-- Q&A 섹션 -->
-    <section class="qa-section">
+    <section id="qa" class="qa-section">
         <div class="qa-container">
             <h2 class="section-title">교육 담당자님들의 질문 리스트</h2>
             
@@ -138,7 +147,7 @@
     </section>
 
     <!-- 협력 기업 섹션 -->
-    <section class="partners-section">
+    <section id="partners" class="partners-section">
         <h2 class="section-title">주요 고객사</h2>
         <div class="partners-container">
             <img src="{{ url_for('static', filename='images/partners_logo.png') }}" alt="기업 로고" class="partners-image">
@@ -146,7 +155,7 @@
     </section>
 
     <!-- 문의 폼 섹션 -->
-    <section class="contact-section">
+    <section id="contact-section" class="contact-section">
         <div class="form-container">
             <h2 class="section-title">근로자 안전보건교육 및 5대 법정의무교육 신청서</h2>
             <p class="form-subtitle">(※ 설문지를 작성해주시면, 확인 후, 교육컨설턴트가 연락드릴예정입니다.)</p>

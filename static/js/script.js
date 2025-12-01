@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Q&A 초기화
     initializeQA();
+    
+    // 네비게이션 초기화
+    initializeNavigation();
 });
 
 // 슬라이더 초기화
@@ -403,6 +406,50 @@ function toggleAnswer(index) {
     }
 }
 
+// 네비게이션 초기화
+function initializeNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // 스크롤 이벤트 리스너
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.pageYOffset >= sectionTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+    
+    // 부드러운 스크롤 처리
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
 // CSS 애니메이션 추가
 const style = document.createElement('style');
 style.textContent = `
@@ -446,6 +493,12 @@ style.textContent = `
     .form-group.focused label {
         color: #667eea;
         transform: translateY(-2px);
+    }
+    
+    .nav-link.active:not(.highlight) {
+        color: #667eea;
+        background: rgba(102, 126, 234, 0.15);
+        font-weight: 600;
     }
 `;
 document.head.appendChild(style);

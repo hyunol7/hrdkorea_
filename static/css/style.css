@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
 
 
 /* 좌측 상단 로고 컨테이너 (독립) */
@@ -28,12 +33,72 @@ body {
     padding: 15px 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .top-logo-bar .hrd-logo {
     height: 50px;
     width: auto;
     display: block;
+}
+
+.logo-link {
+    text-decoration: none;
+    outline: none;
+    display: inline-block;
+}
+
+.logo-link:visited,
+.logo-link:link,
+.logo-link:active,
+.logo-link:hover {
+    text-decoration: none;
+    background: none;
+    outline: none;
+}
+
+/* 네비게이션 메뉴 */
+.top-nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.nav-link.highlight {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.nav-link.highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #5a6fd8, #6a3f99);
+}
+
+.nav-link.active:not(.highlight) {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.15);
+    font-weight: 600;
 }
 
 .logo-wrapper {
@@ -47,9 +112,10 @@ body {
     width: auto;
     transition: all 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    display: block;
 }
 
-.hrd-logo:hover {
+.logo-link:hover .hrd-logo {
     transform: scale(1.05);
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
 }
@@ -940,6 +1006,20 @@ h7.section-title::after, h5.section-title::after {
         height: 45px;
     }
     
+    .top-nav {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    
+    .nav-link.highlight {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+    
     .header {
         height: auto;
         min-height: 30vh;
@@ -1110,6 +1190,23 @@ h7.section-title::after, h5.section-title::after {
     
     .top-logo-bar .hrd-logo {
         height: 38px;
+    }
+    
+    .top-nav {
+        display: none;
+    }
+    
+    .top-nav.mobile-show {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: #f8f9fa;
+        padding: 20px;
+        gap: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
     .header {
