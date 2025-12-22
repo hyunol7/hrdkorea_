@@ -450,6 +450,123 @@ function initializeNavigation() {
     });
 }
 
+// 상담 팝업 열기
+function openConsultPopup() {
+    const popup = document.getElementById('consultPopup');
+    if (popup) {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// 상담 팝업 닫기
+function closeConsultPopup(event) {
+    const popup = document.getElementById('consultPopup');
+    if (popup && (!event || event.target === popup)) {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// 개인정보 자세히보기 토글
+function togglePrivacyDetail() {
+    const detail = document.getElementById('privacyDetail');
+    if (detail) {
+        detail.classList.toggle('active');
+    }
+}
+
+// 상담 폼 제출 처리
+async function handleConsultSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitBtn = form.querySelector('.popup-submit-btn');
+    const submitText = submitBtn.querySelector('.submit-text');
+    const submitLoading = submitBtn.querySelector('.submit-loading');
+    
+    // 개인정보 동의 확인
+    const privacyConsent = document.getElementById('privacyConsent');
+    if (!privacyConsent.checked) {
+        showNotification('개인정보 수집 및 이용에 동의해주세요.', 'error');
+        return;
+    }
+    
+    // 로딩 상태
+    submitBtn.disabled = true;
+    submitText.style.display = 'none';
+    submitLoading.style.display = 'inline';
+    
+    try {
+        // 폼 데이터 수집
+        const formData = {
+            company_name: document.getElementById('companyName').value,
+            contact_number: document.getElementById('contactNumber').value,
+            manager_name: document.getElementById('managerName').value,
+            inquiry_content: document.getElementById('inquiryContent').value || ''
+        };
+        
+        // 서버로 전송
+        const response = await fetch('/consultation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            showNotification('상담 문의가 성공적으로 접수되었습니다! 빠른 시일 내에 연락드리겠습니다.', 'success');
+            form.reset();
+            
+            // 2초 후 팝업 닫기
+            setTimeout(() => {
+                closeConsultPopup();
+            }, 2000);
+        } else {
+            showNotification(result.message || '문의 전송 중 오류가 발생했습니다.', 'error');
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showNotification('문의 전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+    } finally {
+        // 로딩 상태 해제
+        submitBtn.disabled = false;
+        submitText.style.display = 'inline';
+        submitLoading.style.display = 'none';
+    }
+}
+
+// 전화번호 자동 포맷팅
+document.addEventListener('DOMContentLoaded', function() {
+    const contactNumberInput = document.getElementById('contactNumber');
+    if (contactNumberInput) {
+        contactNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            
+            if (value.length <= 3) {
+                e.target.value = value;
+            } else if (value.length <= 7) {
+                e.target.value = value.slice(0, 3) + '-' + value.slice(3);
+            } else if (value.length <= 11) {
+                e.target.value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7);
+            } else {
+                e.target.value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+            }
+        });
+    }
+});
+
+// ESC 키로 팝업 닫기
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeConsultPopup();
+    }
+});
+
 // CSS 애니메이션 추가
 const style = document.createElement('style');
 style.textContent = `
