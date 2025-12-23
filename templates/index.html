@@ -40,14 +40,27 @@
         </nav>
     </div>
 
-    <!-- 헤더 섹션 -->
-    <section id="home" class="header">
-        <div class="logo-container">
-            <div class="big-p">Safety Comes First</div>
-            <div class="company-name-spacer"></div>
-            <div class="company-name">안전보건교육 가장 합리적인 가격으로 진행하기</div>
-        </div>
-    </section>
+  <!-- 히어로 섹션 (home는 이것 하나만) -->
+<section id="home" class="modern-hero">
+
+  <div class="hero-container">
+    <!-- ✅ 원래 스타일 그대로 쓰기: big-p -->
+    <div class="big-p">Safety Comes First</div><br>
+
+    <p class="hero-description">안전보건교육 가장 합리적인 가격으로 진행하기</p>
+
+    <div class="hero-education-boxes">
+      <a href="https://hrdkoreasafety.vercel.app/" target="_blank" class="edu-box-link">
+        <div class="edu-box"><span class="edu-text">정기안전보건교육</span></div>
+      </a>
+
+      <a href="https://hrd-landing.vercel.app/" target="_blank" class="edu-box-link">
+        <div class="edu-box"><span class="edu-text">관리감독자 교육</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 
     <!-- 수료증 섹션 -->
     <section id="certificate" class="certificate-section">
@@ -55,7 +68,7 @@
          <div class="certificate-container">
              <div class="certificate-slider">
                  <div class="certificate-slides" id="certificateSlides">
-                         <img src="{{ url_for('static', filename='images/hrd신고증.png') }}" alt="원격평생교육시설 신고증" class="certificate-image">
+                         <img src="{{ url_for('static', filename='images/hrd.png') }}" alt="원격평생교육시설 신고증" class="certificate-image">
                  </div>
          </div>
     </section>
@@ -83,7 +96,7 @@
             <img src="{{ url_for('static', filename='images/manage.png') }}" alt="담당자 맞춤 서비스" class="service-image">
         </div>
         <div class="service-container">
-            <img src="{{ url_for('static', filename='images/cerfi.png') }}" alt="담당자 맞춤 서비스" class="service-image">
+            <img src="{{ url_for('static', filename='images/hrd_cer.png') }}" alt="담당자 맞춤 서비스" class="service-image">
         </div>
     </section>
 
@@ -178,6 +191,142 @@
             </form>
         </div>
     </section>
+
+    <!-- 맨 아래 상담문의 섹션 -->
+    <section id="question" class="bottom-consultation-section">
+        <div class="container">
+            <div class="consultation-container">
+        
+                <div class="consultation-right">
+                    <div class="consult-form-container">
+                        <h3>무료 상담 신청하기</h3>
+                        <form id="bottomConsultForm">
+                            <div class="consult-form-row">
+                                <div class="consult-form-group">
+                                    <label>1. 기업명 *</label>
+                                    <input type="text" name="company_name" required placeholder="기업명을 입력해주세요">
+                                </div>
+                            </div>
+                            <div class="consult-form-row">
+                                <div class="consult-form-group">
+                                    <label>2. 연락처 *</label>
+                                    <div class="phone-input-group">
+                                        <input type="text" id="phone1" class="phone-part" placeholder="010" maxlength="3" required>
+                                        <span>-</span>
+                                        <input type="text" id="phone2" class="phone-part" placeholder="앞자리" maxlength="4" required>
+                                        <span>-</span>
+                                        <input type="text" id="phone3" class="phone-part" placeholder="뒷자리" maxlength="4" required>
+                                    </div>
+                                    <input type="hidden" name="contact_number" id="hiddenContactNumber">
+                                </div>
+                                <div class="consult-form-group">
+                                    <label>3. 담당자 성함 *</label>
+                                    <input type="text" name="manager_name" required placeholder="담당자 본인 성함을 입력해주세요">
+                                </div>
+                            </div>
+                            <div class="consult-form-row">
+                                <div class="consult-form-group full-width">
+                                    <label>4. 문의사항</label>
+                                    <textarea name="inquiry_content" rows="4" placeholder="문의하실 내용을 입력하세요 (선택사항)"></textarea>
+                                </div>
+                            </div>
+                            <div class="consult-checkbox">
+                                <label>
+                                    <input type="checkbox" id="bottomPrivacyConsent" required>
+                                    <span>[필수] 개인정보수집동의</span>
+                                </label>
+                                <button type="button" class="privacy-detail-btn" onclick="togglePrivacyDetail()">자세히보기</button>
+                            </div>
+                            
+                            <div class="privacy-detail" id="privacyDetail" style="display: none; margin-top: 10px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem;">
+                                <p><strong>개인정보 수집 및 이용 동의</strong></p>
+                                <p>• 수집하는 개인정보 항목: 기업명, 연락처, 담당자명, 문의내용</p>
+                                <p>• 개인정보 수집 및 이용목적: 교육 상담 및 문의 응대</p>
+                                <p>• 개인정보 보유 및 이용기간: 문의 접수 후 1년</p>
+                                <p>• 동의를 거부할 권리가 있으며, 거부 시 상담 서비스 이용이 제한됩니다.</p>
+                            </div>
+                            <button type="submit" class="consult-submit-btn">
+                                <span class="submit-text">문의하기</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 하단 고정 버튼 -->
+    <div class="bottom-bar">
+        <div class="contact-info">
+            <a href="tel:1551-0811" class="phone-link">
+                <span>📞 1551-0811</span>
+            </a>
+            <span>실시간 전화상담 가능</span>
+        </div>
+    </div>
+
+     <!-- 왼쪽 탭 버튼 (팝업 닫혔을 때 표시) -->
+     <button class="popup-tab-btn" id="popupTab" onclick="openConsultPopup()" style="display: none;">
+        <span>상담<br>문의</span>
+    </button>
+
+    <!-- 사이드 팝업 상담 폼 -->
+    <div class="consult-popup-overlay" id="consultPopup">
+        <div class="consult-popup">
+            <div class="popup-header">
+                <h2>빠른상담문의</h2>
+                <button class="popup-close" onclick="closeConsultPopup()">&times;</button>
+            </div>
+            
+            <div class="popup-body">
+                <form id="consultForm" onsubmit="handleConsultSubmit(event)">
+                    <div class="popup-form-group">
+                        <label for="companyName">1. 기업명 <span class="required">*</span></label>
+                        <input type="text" id="companyName" name="company_name" required placeholder="기업명을 입력하세요">
+                    </div>
+                    
+                    <div class="popup-form-group">
+                        <label for="contactNumber">2. 연락처 <span class="required">*</span></label>
+                        <p>이메일을 작성해주셔도 됩니다.</p>
+                        <input type="text" id="contactNumber" name="contact_number" required placeholder="010-0000-0000">
+                    </div>
+                    
+                    <div class="popup-form-group">
+                        <label for="managerName">3. 담당자 성함 <span class="required">*</span></label>
+                        <input type="text" id="managerName" name="manager_name" required placeholder="담당자 성함을 입력하세요">
+                    </div>
+                    
+                    <div class="popup-form-group">
+                        <label for="inquiryContent">4. 문의사항</label>
+                        <textarea id="inquiryContent" name="inquiry_content" rows="4" placeholder="문의하실 내용을 입력하세요 (선택사항)"></textarea>
+                    </div>
+                    
+                    <div class="popup-privacy">
+                        <label class="privacy-checkbox-label">
+                            <input type="checkbox" id="privacyConsent" required>
+                            <span>[필수] 개인정보수집동의</span>
+                        </label>
+                        <button type="button" class="privacy-detail-btn" onclick="togglePrivacyDetail()">자세히보기</button>
+                    </div>
+                    
+                    <div class="privacy-detail" id="privacyDetail">
+                        <p><strong>개인정보 수집 및 이용 동의</strong></p>
+                        <p>• 수집하는 개인정보 항목: 기업명, 연락처, 담당자명, 문의내용</p>
+                        <p>• 개인정보 수집 및 이용목적: 교육 상담 및 문의 응대</p>
+                        <p>• 개인정보 보유 및 이용기간: 문의 접수 후 1년</p>
+                        <p>• 동의를 거부할 권리가 있으며, 거부 시 상담 서비스 이용이 제한됩니다.</p>
+                    </div>
+                    
+                    <button type="submit" class="popup-submit-btn">
+                        <span class="submit-text">문의하기</span>
+                        <span class="submit-loading" style="display: none;">전송중...</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
 
     <!-- 하단 고정 신청서 버튼 -->
     <div class="fixed-apply-bar">
