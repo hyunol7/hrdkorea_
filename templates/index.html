@@ -28,7 +28,7 @@
 <body>
     <!-- 좌측 상단 로고 컨테이너 (독립) -->
     <div class="top-logo-bar">
-        <a href="#home" class="logo-link"><img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo"></a>
+        <a href="#home" class="logo-link"><img src="{{ url_for('static', filename='images/HRDKorea.png') }}" alt="HRD Korea" class="hrd-logo logo-image"></a>
         <nav class="top-nav">
             <a href="#home" class="nav-link">홈</a>
             <a href="#certificate" class="nav-link">교육기관인증</a>
@@ -186,9 +186,8 @@
     <!-- 문의 폼 섹션 -->
     <section id="contact-section" class="contact-section">
         <div class="form-container">
-            <h2 class="section-title">근로자 안전보건교육 및 <br class="mobile-br"> 5대 법정의무교육 신청서</h2>
+            <h2 class="section-title">근로자 안전보건교육 신청서</h2>
             <p class="form-subtitle">(※ 설문지를 작성해주시면, 확인 후, <br class="mobile-br">교육컨설턴트가 연락드릴예정입니다.)</p>
-            </form>
         </div>
     </section>
 
@@ -238,13 +237,6 @@
                                 <button type="button" class="privacy-detail-btn" onclick="togglePrivacyDetail()">자세히보기</button>
                             </div>
                             
-                            <div class="privacy-detail" id="privacyDetail" style="display: none; margin-top: 10px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem;">
-                                <p><strong>개인정보 수집 및 이용 동의</strong></p>
-                                <p>• 수집하는 개인정보 항목: 기업명, 연락처, 담당자명, 문의내용</p>
-                                <p>• 개인정보 수집 및 이용목적: 교육 상담 및 문의 응대</p>
-                                <p>• 개인정보 보유 및 이용기간: 문의 접수 후 1년</p>
-                                <p>• 동의를 거부할 권리가 있으며, 거부 시 상담 서비스 이용이 제한됩니다.</p>
-                            </div>
                             <button type="submit" class="consult-submit-btn">
                                 <span class="submit-text">문의하기</span>
                             </button>
@@ -258,12 +250,14 @@
     <!-- 하단 고정 버튼 -->
     <div class="bottom-bar">
         <div class="contact-info">
-            <a href="tel:1551-0811" class="phone-link">
-                <span>📞 1551-0811</span>
+            <a href="https://open.kakao.com/o/sgNiRb8h" class="phone-link">
+                <img src="{{ url_for('static', filename='images/KakaoTalk_logo.svg') }}" alt="카톡 상담하기" class="kakao-logo">
+                <span>카톡 상담하기</span>
             </a>
-            <span>실시간 전화상담 가능</span>
         </div>
     </div>
+
+    
 
      <!-- 왼쪽 탭 버튼 (팝업 닫혔을 때 표시) -->
      <button class="popup-tab-btn" id="popupTab" onclick="openConsultPopup()" style="display: none;">
@@ -309,13 +303,6 @@
                         <button type="button" class="privacy-detail-btn" onclick="togglePrivacyDetail()">자세히보기</button>
                     </div>
                     
-                    <div class="privacy-detail" id="privacyDetail">
-                        <p><strong>개인정보 수집 및 이용 동의</strong></p>
-                        <p>• 수집하는 개인정보 항목: 기업명, 연락처, 담당자명, 문의내용</p>
-                        <p>• 개인정보 수집 및 이용목적: 교육 상담 및 문의 응대</p>
-                        <p>• 개인정보 보유 및 이용기간: 문의 접수 후 1년</p>
-                        <p>• 동의를 거부할 권리가 있으며, 거부 시 상담 서비스 이용이 제한됩니다.</p>
-                    </div>
                     
                     <button type="submit" class="popup-submit-btn">
                         <span class="submit-text">문의하기</span>
@@ -328,11 +315,27 @@
     </div>
 
 
-    <!-- 하단 고정 신청서 버튼 -->
-    <div class="fixed-apply-bar">
-        <button type="button" class="fixed-apply-btn" onclick="openGoogleForm()">
-            <span class="btn-text">신청서 작성하기</span>
-        </button>
+    <!-- 개인정보 동의 팝업 -->
+    <div class="privacy-popup-overlay" id="privacyPopup" onclick="if(event.target === this) closePrivacyPopup()">
+        <div class="privacy-popup" onclick="event.stopPropagation()">
+            <div class="privacy-popup-header">
+                <h3>개인정보 수집 및 이용 동의</h3>
+                <button class="privacy-popup-close" onclick="closePrivacyPopup()">&times;</button>
+            </div>
+            <div class="privacy-popup-content">
+                <p><strong>수집하는 개인정보 항목</strong></p>
+                <p>기업명, 연락처, 담당자명, 문의내용</p>
+                
+                <p><strong>개인정보 수집 및 이용목적</strong></p>
+                <p>교육 상담 및 문의 응대</p>
+                
+                <p><strong>개인정보 보유 및 이용기간</strong></p>
+                <p>문의 접수 후 1년</p>
+                
+                <p><strong>동의 거부 권리</strong></p>
+                <p>동의를 거부할 권리가 있으며, 거부 시 상담 서비스 이용이 제한됩니다.</p>
+            </div>
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>

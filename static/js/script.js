@@ -479,14 +479,21 @@ function closeConsultPopup(event) {
 }
 
 // 개인정보 자세히보기 토글
+// 개인정보 자세히보기 팝업 열기
 function togglePrivacyDetail() {
-    // 팝업 내의 privacyDetail 찾기
-    const popup = document.getElementById('consultPopup');
+    const popup = document.getElementById('privacyPopup');
     if (popup) {
-        const detail = popup.querySelector('.privacy-detail');
-        if (detail) {
-            detail.classList.toggle('active');
-        }
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+    }
+}
+
+// 개인정보 팝업 닫기
+function closePrivacyPopup() {
+    const popup = document.getElementById('privacyPopup');
+    if (popup) {
+        popup.classList.remove('active');
+        document.body.style.overflow = ''; // 배경 스크롤 복원
     }
 }
 
@@ -763,6 +770,7 @@ async function handleBottomConsultSubmit(event) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeConsultPopup();
+        closePrivacyPopup();
     }
 });
 
