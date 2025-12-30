@@ -758,7 +758,7 @@ h7.section-title::after, h5.section-title::after {
 
 /* 문의 폼 섹션 */
 .contact-section {
-    padding: 60px 0 20px 0;
+    padding: 60px 0 40px 0;
     background: #f8f9fa;
     color: #333;
 }
@@ -1795,7 +1795,7 @@ h7.section-title::after, h5.section-title::after {
 /* 하단 상담 신청서 섹션 */
 .bottom-consultation-section {
     background: #f8f9fa;
-    padding: 30px 20px 80px 20px;
+    padding: 80px 20px;
 }
 
 .consultation-container {
